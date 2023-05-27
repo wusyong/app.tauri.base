@@ -1,0 +1,24 @@
+id: dev.crabnebula.Sdk
+branch: '22.08'
+runtime: org.freedesktop.Sdk
+sdk: org.freedesktop.Sdk
+runtime-version: '22.08'
+build-runtime: true
+inherit-extensions:
+  - org.freedesktop.Sdk.Extension
+separate-locales: false
+build-options:
+  strip: true
+modules:
+  - name: webview
+    buildsystem: simple
+    build-commands:
+      - cp -r ./Release/* ${FLATPAK_DEST}/lib
+      - cp -r ./Resources/* ${FLATPAK_DEST}/lib
+      # - cp -r . ${FLATPAK_DEST}/lib
+    sources:
+      - type: archive
+        url: https://cef-builds.spotifycdn.com/cef_binary_113.1.5%2Bge452d82%2Bchromium-113.0.5672.93_linux64_minimal.tar.bz2
+        sha1: 3db8f310183fd2ef27655fa5507bbf458fce355b
+      # - type: dir
+      #   path: ../fec
